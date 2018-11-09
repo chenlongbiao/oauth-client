@@ -1,7 +1,5 @@
 package com.oauth.client.filter;
 
-import com.oauth.client.SysRole;
-import com.oauth.client.SysUser;
 import com.oauth.client.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,8 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author chenlongbiao
@@ -35,11 +31,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
-//    @Value("${jwt.header}")
-    private String tokenHeader= "token";
+    @Value("${jwt.header}")
+    private String tokenHeader;
 
-//    @Value("${jwt.tokenHead}")
-    private String tokenHead = "Bearer" ;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
 
     @Override
@@ -49,10 +45,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             final String authToken = authHeader.substring(tokenHead.length()); // The part after "Bearer "
             String useraccount = jwtUtil.getUserAccountFromToken(authToken);
             logger.info("JwtAuthenticationTokenFilter[doFilterInternal] checking authentication " + useraccount);
-
             if (useraccount != null && SecurityContextHolder.getContext().getAuthentication() == null) {//token校验通过
                 UserDetails userDetails =jwtUtil.getUser(authToken);
-
 //                UserDetails userDetails = userDetailsService.loadUserByUsername(useraccount);//根据account去数据库中查询user数据，足够信任token的情况下，可以省略这一步
                 if (jwtUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

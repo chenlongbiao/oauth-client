@@ -1,4 +1,4 @@
-package com.oauth.client;
+package com.oauth.client.domain;
 
 import java.io.Serializable;
 

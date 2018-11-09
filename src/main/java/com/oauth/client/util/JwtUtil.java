@@ -1,7 +1,7 @@
 package com.oauth.client.util;
 
-import com.oauth.client.SysRole;
-import com.oauth.client.SysUser;
+import com.oauth.client.domain.SysRole;
+import com.oauth.client.domain.SysUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.apache.commons.codec.binary.Base64;
@@ -13,7 +13,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author chenlongbiao
@@ -47,18 +46,6 @@ public class JwtUtil {
         return key;
     }
 
-    public static void main(String[] args) throws Exception {
-        JwtUtil jwtUtil = new JwtUtil();
-//        String str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDA5MjQ0MjYsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJiM2QzYzlhMC1iMDlkLTRjYjktODFkMC03NzFjOTc3ZjZhYjYiLCJjbGllbnRfaWQiOiJ0ZXN0Y2xpZW50Iiwic2NvcGUiOlsidGVzdCJdfQ.MoBXSUnI06hUaQvMVxTbqmdAEC73dldQPHKC8w3-lPA";
-        String str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDExODY5MjIsInVzZXJfbmFtZSI6IjEyMyIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iLCJST0xFX0NIQVQiXSwianRpIjoiNWRiN2Y0ODMtNTk1My00YWE2LTkyOGItMDk3YmRkZWFlYmZlIiwiY2xpZW50X2lkIjoiU2FtcGxlQ2xpZW50SWQiLCJzY29wZSI6WyIkMmEkMTAkVnk3NUxOSFBuWVprWURKVkdqRDJJLlVpUXBCMTJFbmYzNlkzR1lFWkQ1Y0R3eEtnYUVMak8iXX0.nzIWbQ19OX7TIAxLy-mWM6CN9MGldEwfRFpWQlip6oY";
-        Claims claims = jwtUtil.parseJWT(str);
-        String[] split = str.split(".");
-        String s = split[1];
-        byte[] bytes = Base64.decodeBase64(s);
-        String s1 = new String(bytes);
-        System.out.println(s1);
-        System.out.println(claims);
-    }
 
     public String getUserAccountFromToken(String token) {
         String useraccount;
@@ -151,5 +138,18 @@ public class JwtUtil {
         final Date expiration = getExpirationDateFromToken(token);
         Boolean result= expiration.before(new Date());
         return result;
+    }
+
+    public static void main(String[] args) {
+        JwtUtil jwtUtil = new JwtUtil();
+        String str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJ1c2VyX25hbWUiOiIxMjMiLCJjcmVhdGVkIjoxNTQxNjYwODg5Njg1LCJzY29wZSI6WyIkMmEkMTAkVnk3NUxOSFBuWVprWURKVkdqRDJJLlVpUXBCMTJFbmYzNlkzR1lFWkQ1Y0R3eEtnYUVMak8iXSwiZXhwIjoxNTQxNjYyNjg3LCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIiwiUk9MRV9DSEFUIl0sImp0aSI6IjQ5YWZkNGFhLTBmZTMtNGQxZS1iNjllLWE0YTZlNDkxYmFmNCIsImNsaWVudF9pZCI6IlNhbXBsZUNsaWVudElkIn0.Tdc2mk1owpT-jQp0AvOvijlePkDz-xAw5Eh_P_wvw3g";
+        Date expirationDateFromToken = jwtUtil.getCreatedDateFromToken(str);
+        Boolean tokenExpired = jwtUtil.isTokenExpired(str);
+        Date a = jwtUtil.getExpirationDateFromToken(str);
+        System.out.println(a);
+        System.out.println(tokenExpired);
+        long ss= 1541453384l;
+        Date date = new Date(ss);
+        System.out.println(date + "------------------");
     }
 }
