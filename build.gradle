@@ -14,13 +14,47 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+jar {
+    enabled = true
+}
+//task sourceJar(type: Jar) {
+//    classifier = 'sources'
+//    from sourceSets.main.allJava
+//}
+//artifacts {
+////    archives sourcesJar
+//}
 
 group = 'com.oauth'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 sourceCompatibility = 1.8
-
+def artifactId = "authclient"
+uploadArchives {
+    configuration = configurations.archives
+    repositories{
+        mavenDeployer{
+            repository(url:"http://47.95.220.97:8081/repository/maven-snapshots/") {
+                        authentication(userName:"admin", password:"admin123")
+            }
+             pom.version ="$project.version"
+             pom.artifactId ="$artifactId"
+             pom.groupId ="$project.group"
+            pom.project{
+                name=project.name
+                packaging='jar'
+                description='description'
+            }
+        }
+    }
+}
 repositories {
     mavenLocal()
+    repositories {
+        maven {
+            url 'http://47.95.220.97:8081/repository/maven-public/'
+        }
+    }
     mavenCentral()
 }
 
@@ -35,7 +69,10 @@ dependencies {
     implementation('io.jsonwebtoken:jjwt:0.9.1')
 //    implementation('org.springframework.security:spring-security-jwt')
     implementation('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.1.RELEASE')
-    compileOnly('org.projectlombok:lombok')
+    compile('org.projectlombok:lombok:1.18.4')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
 }
+
+
+

@@ -1,5 +1,6 @@
 package com.oauth.client;
 
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
