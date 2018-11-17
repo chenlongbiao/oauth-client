@@ -5,6 +5,7 @@ import com.oauth.client.domain.SysUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,11 @@ import java.util.List;
 @Component
 public class JwtUtil {
 
+    @Value("${jwt.stringKey}")
+    private String key;
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
     /**
      * 解密jwt
      * @param jwt
@@ -38,7 +44,7 @@ public class JwtUtil {
     }
 
     public SecretKey generalKey(){
-        String stringKey = "MTIz";//本地配置文件中加密的密文7786df7fc3a34e26a61c034d5ec8245d
+        String stringKey = key;//本地配置文件中加密的密文7786df7fc3a34e26a61c034d5ec8245d
         byte[] encodedKey = Base64.decodeBase64(stringKey);//本地的密码解码[B@152f6e2
 //        System.out.println(encodedKey);//[B@152f6e2
 //        System.out.println(Base64.encodeBase64URLSafeString(encodedKey));//7786df7fc3a34e26a61c034d5ec8245d
