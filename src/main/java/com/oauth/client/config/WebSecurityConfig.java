@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Configuration
 @Order(1)
 @EnableOAuth2Sso
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 //@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
