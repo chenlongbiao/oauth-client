@@ -34,17 +34,17 @@ uploadArchives {
     configuration = configurations.archives
     repositories{
         mavenDeployer{
-            repository(url:"http://47.95.220.97:8081/repository/maven-snapshots/") {
+            repository(url:"http://120.27.17.129:8081/repository/maven-snapshots/") {
                         authentication(userName:"admin", password:"admin123")
             }
              pom.version ="$project.version"
              pom.artifactId ="$artifactId"
              pom.groupId ="$project.group"
-            pom.project{
-                name=project.name
-                packaging='jar'
-                description='description'
-            }
+             pom.project{
+                 name=project.name
+                 packaging='jar'
+                 description='description'
+             }
         }
     }
 }
