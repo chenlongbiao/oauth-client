@@ -1,6 +1,5 @@
-package com.oauth.client.filter;
+package com.chen.oauth.client.filter;
 
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.util.JsonParser;
 import org.springframework.security.oauth2.common.util.JsonParserFactory;

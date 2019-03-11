@@ -1,6 +1,6 @@
-package com.oauth.client.filter;
+package com.chen.oauth.client.filter;
 
-import com.oauth.client.util.JwtUtil;
+import com.chen.oauth.client.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

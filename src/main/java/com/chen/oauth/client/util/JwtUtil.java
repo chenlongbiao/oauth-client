@@ -1,7 +1,7 @@
-package com.oauth.client.util;
+package com.chen.oauth.client.util;
 
-import com.oauth.client.domain.SysRole;
-import com.oauth.client.domain.SysUser;
+import com.chen.oauth.client.domain.SysRole;
+import com.chen.oauth.client.domain.SysUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.apache.commons.codec.binary.Base64;

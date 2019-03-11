@@ -26,15 +26,15 @@ jar {
 ////    archives sourcesJar
 //}
 
-group = 'com.oauth'
-version = '0.0.4-SNAPSHOT'
+group = 'com.chen.oauth'
+version = '0.0.5-SNAPSHOT'
 sourceCompatibility = 1.8
-def artifactId = "authclient"
+def artifactId = "oauth-client"
 uploadArchives {
     configuration = configurations.archives
     repositories{
         mavenDeployer{
-            repository(url:"http://120.27.17.129:8081/repository/maven-snapshots/") {
+            repository(url:"http://39.105.160.247:8083/repository/maven-snapshots/") {
                         authentication(userName:"admin", password:"admin123")
             }
              pom.version ="$project.version"
@@ -50,10 +50,8 @@ uploadArchives {
 }
 repositories {
     mavenLocal()
-    repositories {
-        maven {
-            url 'http://47.95.220.97:8081/repository/maven-public/'
-        }
+    maven {
+            url 'http://39.105.160.247:8083/repository/maven-public/'
     }
     mavenCentral()
 }

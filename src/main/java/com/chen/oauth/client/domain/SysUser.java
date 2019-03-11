@@ -1,4 +1,4 @@
-package com.oauth.client.domain;
+package com.chen.oauth.client.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

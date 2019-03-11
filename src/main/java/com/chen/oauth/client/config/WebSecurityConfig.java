@@ -1,6 +1,6 @@
-package com.oauth.client.config;
-import com.oauth.client.filter.JwtAuthenticationEntryPoint;
-import com.oauth.client.filter.JwtAuthenticationTokenFilter;
+package com.chen.oauth.client.config;
+import com.chen.oauth.client.filter.JwtAuthenticationEntryPoint;
+import com.chen.oauth.client.filter.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @Order(1)
