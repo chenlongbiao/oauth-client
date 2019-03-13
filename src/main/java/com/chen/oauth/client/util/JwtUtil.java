@@ -69,10 +69,10 @@ public class JwtUtil {
         useraccount = claims.getSubject();
         SysUser sysUser = new SysUser();
         List roles = new ArrayList();
-        List<String> authorities =(List)(claims).get("authorities");
-        for (String ss: authorities){
+        List<Integer> authorities =(List)(claims).get("authorities");
+        for (Integer ss: authorities){
             SysRole sysRole = new SysRole();
-            sysRole.setName(ss);
+            sysRole.setId(ss);
             roles.add(sysRole);
         }
         sysUser.setRoles(roles);
